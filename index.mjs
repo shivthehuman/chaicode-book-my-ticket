@@ -16,9 +16,9 @@ const port = process.env.PORT || 8080;
 // Step 2: Database Connection
 const pool = new pg.Pool({
   host: "localhost",
-  port: 5432, // Check this! PostgreSQL default is 5432
+  port: 5432, 
   user: "postgres",
-  password: "postgres", // Tumhara pgAdmin ka password
+  password: "postgres", 
   database: "sql_class_2_db",
   max: 20,
   connectionTimeoutMillis: 0,
@@ -29,7 +29,7 @@ const app = express();
 
 // --- MIDDLEWARES ----------------------------------------------------------------------------------
 app.use(cors());
-app.use(express.json()); // Iske bina hum post request ka data nahi padh payenge!
+app.use(express.json()); 
 
 // --- CUSTOM AUTH MIDDLEWARE (The Gatekeeper) ---
 const verifyToken = (req, res, next) => {
@@ -79,7 +79,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// 2. LOGIN ROUTE
+// 2. LOGIN ROUTE-----------------
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -123,7 +123,7 @@ app.put("/:id/:name", verifyToken, async (req, res) => {
     // if(checkSeat.rows[0].isbooked === 1) return error;
 
     // FIXXXED: Using Sir's FOR UPDATE transaction below to lock the row properly.
-    
+
     const conn = await pool.connect();
     await conn.query("BEGIN");
     
