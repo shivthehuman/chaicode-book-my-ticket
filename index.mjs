@@ -116,6 +116,14 @@ app.put("/:id/:name", verifyToken, async (req, res) => {
     const name = req.params.name;
     const userId = req.user.id; 
 
+
+    // PEHLE AISE TRY KIYA THA (WITHOUT TRANSACTION) PAR RACE CONDITION AA RAHI THI
+    // const checkSeat = await pool.query("SELECT isbooked FROM seats WHERE id = $1", [id]);
+
+    // if(checkSeat.rows[0].isbooked === 1) return error;
+
+    // FIXXXED: Using Sir's FOR UPDATE transaction below to lock the row properly.
+    
     const conn = await pool.connect();
     await conn.query("BEGIN");
     

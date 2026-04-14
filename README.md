@@ -1,3 +1,8 @@
+## 🧠 Challenges Faced & Learnings (My Experience)
+- **The Duplicate Booking Bug:** Initially, my booking API was failing when two requests hit at the exact same millisecond. Revising the SQL class notes on Transactions and `FOR UPDATE` row-level locks helped me fix this race condition!
+- **Token Management:** It took me some time to figure out how to pass the JWT from `localStorage` into the `fetch` API headers in `index.html`. 
+- **Responsive UI:** The original table was overflowing on my mobile screen, so I added horizontal scrolling and Tailwind breakpoints (`md:w-32`) to fix it.
+
 # 🎟️ ChaiCode Hackathon - Book My Ticket (Backend Extension)
 
 This repository contains the backend and frontend implementation for the ChaiCode "Book My Ticket" hackathon. The goal was to extend an existing production codebase by adding an authentication layer and protected booking flow without breaking existing endpoints.
